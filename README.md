@@ -76,7 +76,85 @@ To build the applications in pico-examples, you’ll need to install some extra 
 
 ```
 $ sudo apt update 
-$ sudo apt install cmake gcc-arm-none-eabi libnewlib-arm-none-eabi build-essential 
+$ sudo apt install cmake gcc-arm-none-eabi libnewlib-arm-none-eabi build-essential libstdc++-arm-none-eabi-newlib
+```
+
+`Note:` NOTE: When a new version of the SDK is released you will need to update your copy of the SDK. To do this go into the pico-sdk directory which contains your copy of the SDK, and do the following
+
+```
+$ cd pico-sdk 
+$ git pull 
+$ git submodule update
+```
+
+## Compiling and Running the Code RP2040
+Before we write a code we need to do a small setup
+
+```
+$ cd ~/
+$ cd pico/pico-examples
+$ mkdir build 
+$ cd build
+$ export PICO_SDK_PATH=~/pico/pico-sdk
+$ cmake
+```
+
+You will get the following output
+```
+Using PICO_SDK_PATH from environment ('../../pico-sdk') 
+PICO_SDK_PATH is /home/pi/pico/pico-sdk
+  .
+  .
+  -- Build files have been written to: /home/pi/pico/pico-examples/build
+```
+Now to we will edit a code which is present in the pico-examples 
+
+```
+$ cd ~/
+$ cd /pico/pico-examples/hello_world/usb
+$ code .
+```
+The "code ." will open the directory in Visual Studio Code, where we can view and edit and save the file, we do not need to edit anything in the file as of now
+
+We can see the hello_usb.c code
+
+![](https://github.com/saurabhparulekar24/EDE5190_LAB2_SETUPGUIDE/blob/main/hello_code.png)
+
+We can also see that the other file in the directory, in that we can see that the serial output is routed to the USB instead of the UART
+
+![](https://github.com/saurabhparulekar24/EDE5190_LAB2_SETUPGUIDE/blob/main/cmake.png)
+
+We are going to compile and run hello_usb.c code by following the steps
+
+```
+$ cd ~/
+$ cd pico/pico-examples/build/hello_world
+$ make -j4
+```
+
+Once this completes, we navigate into the hello_world folder and retrieve "hello_usb.uf2" file.
+When we connect the Qtpy board it first connects to windows, we need to make it connect to the virtual linux system, once we do that we face an problem
+to flash this code to the board, we need to reset the board in doing so it gets disconnected from the linux machine and reconnects to windows as a Storage drive, when you connect it again to Linux, it does not appear as a storage drive which is necessary for flashing the code. Instead what we are gonna do is, we will copy the code from the linux machine to the windows machine and then flash the board
+
+```
+$ cd ~/
+$ cd pico/pico-examples/build/hello_world/usb
+$ cp hello_usb.uf2 /mnt/c/Users/Saurabh/Downloads
+```
+
+The destination directory will change for you, after the above step you'll find the code in your downloads folder on windows machine
+
+Connect your RP2040 board, once the drive appears, drag-drop the "hello_usb.uf2" file on the drive. the drive will disappear and your code will start running on the board
+
+To view the output I used MobaXterm software, it is a versatile software for various sessions such as SSH,telnet, serial etc
+Open MobaXterm and click on session on top left, select Serial and select the USB device(your RP2040 board, you can find the COM port in device manager) and select a baud rate of 115200
+
+![](https://github.com/saurabhparulekar24/EDE5190_LAB2_SETUPGUIDE/blob/main/Moba.png)
+
+Press Ok and you will see the output of your code
+
+![](https://github.com/saurabhparulekar24/EDE5190_LAB2_SETUPGUIDE/blob/main/mobaoutput.png)
+
 
 
 
