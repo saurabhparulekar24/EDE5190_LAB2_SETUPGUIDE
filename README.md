@@ -161,7 +161,7 @@ Press Ok and you will see the output of your code
 
 ![](https://github.com/saurabhparulekar24/EDE5190_LAB2_SETUPGUIDE/blob/main/mobaoutput.png)
 
-Thank you
+People who are new to Linux can read this [link](https://www.guru99.com/linux-commands-cheat-sheet.html)
 
 
 
