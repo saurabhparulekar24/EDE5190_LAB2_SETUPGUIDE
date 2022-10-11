@@ -25,10 +25,10 @@ Restart your computer, a command prompt will automatically start and you will be
 
 ![](https://github.com/saurabhparulekar24/EDE5190_LAB2_SETUPGUIDE/blob/main/2.png)
 
-Now in WSL USB devices won't be supported directly therefore you need install some extra drives to do so, First you need to install drivers on your windows machine
+Now, in WSL, USB devices won't be supported directly therefore you need install some extra drivers to do so, First you need to install drivers on your windows machine
 so go to this link([the usbipd-winproject](https://github.com/dorssel/usbipd-win/releases)) and Select the .msi file, which will download the installer. (You may get a warning asking you to confirm that you trust this download).Run the downloaded usbipd-win_x.msi installer file.
 
-Now You need to install some tools on your linux machine, go the terminal in which your Ubuntu machine is running and enter the followinf commands
+Now You need to install some tools on your linux machine, go the terminal in which your Ubuntu machine is running and enter the following commands
 ```
 sudo apt install linux-tools-5.4.0-77-generic hwdata
 sudo update-alternatives --install /usr/local/bin/usbip usbip /usr/lib/linux-tools/5.4.0-77-generic/usbip 20
@@ -39,7 +39,7 @@ You will get a response as below when you enter the second command
 This ends the installation of WSL
 
 ## Installing Visual Code Editor for editing Codes on WSL
-THe WSL is a terminal based access, we do get any visual interface, hence to edit codes it becomes difficult, if you do not need a visual code editor you can use nano,vim etc. for now we'll install Visual Studio Code
+THe WSL is a terminal based access, we do get any visual interface, hence it becomes difficult to edit large codes, if you do not need a visual code editor you can use nano,vim etc. for now we'll install Visual Studio Code
 
 Download Visual Studio Code from [Link](https://code.visualstudio.com/download)
 after downloading we need to install some extensions, namely WSL and C/C++
@@ -50,7 +50,7 @@ Open Visual Studio code and click on the Extensions Option on the left vertical 
 Search for WSL and C/C++ and click install
 ![](https://github.com/saurabhparulekar24/EDE5190_LAB2_SETUPGUIDE/blob/main/VSC2.png)
 
-This is the setup for Visual Studio Code, I'll show later in the guide on how to use it
+This ends the setup for Visual Studio Code, I'll show later in the guide on how to use it
 
 ## Getting Started with Installing the SDK on RP2040
 Open your Ubuntu WSL terminal and type the below commands
@@ -133,8 +133,8 @@ $ make -j4
 ```
 
 Once this completes, we navigate into the hello_world folder and retrieve "hello_usb.uf2" file.
-When we connect the Qtpy board it first connects to windows, we need to make it connect to the virtual linux system, once we do that we face an problem
-to flash this code to the board, we need to reset the board in doing so it gets disconnected from the linux machine and reconnects to windows as a Storage drive, when you connect it again to Linux, it does not appear as a storage drive which is necessary for flashing the code. Instead what we are gonna do is, we will copy the code from the linux machine to the windows machine and then flash the board
+When we connect the Qtpy board it first connects to windows, we need to connect it to the virtual linux system, once we do that we face a problem.
+to flash this code to the board, we need to put the board in programming mode, in doing so it gets disconnected from the linux machine and reconnects to windows as a Storage drive, when you connect it again to Linux, it does not appear as a storage drive which is necessary for flashing the code. Instead what we are gonna do is, we will copy the code from the linux machine to the windows machine and then flash the board.
 
 ```
 $ cd ~/
@@ -142,11 +142,17 @@ $ cd pico/pico-examples/build/hello_world/usb
 $ cp hello_usb.uf2 /mnt/c/Users/Saurabh/Downloads
 ```
 
-The destination directory will change for you, after the above step you'll find the code in your downloads folder on windows machine
+The destination directory will change for you
+```
+$ cp hello_usb.uf2 /mnt/c/Users/<Your Machine Name>/Downloads
+```
 
-Connect your RP2040 board, once the drive appears, drag-drop the "hello_usb.uf2" file on the drive. the drive will disappear and your code will start running on the board
+after the above step you'll find the code in your Downloads folder on windows machine
 
-To view the output I used MobaXterm software, it is a versatile software for various sessions such as SSH,telnet, serial etc
+
+Connect your RP2040 board, while pressing the boot button press reset, RPI-RP2 drive will appear, once the drive appears, drag-drop the "hello_usb.uf2" file on that drive. the drive will disappear and your code will start running on the board
+
+To view the output I used MobaXterm software [link](https://mobaxterm.mobatek.net/), it is a versatile software for various sessions such as SSH,telnet, serial etc.
 Open MobaXterm and click on session on top left, select Serial and select the USB device(your RP2040 board, you can find the COM port in device manager) and select a baud rate of 115200
 
 ![](https://github.com/saurabhparulekar24/EDE5190_LAB2_SETUPGUIDE/blob/main/Moba.png)
@@ -154,6 +160,8 @@ Open MobaXterm and click on session on top left, select Serial and select the US
 Press Ok and you will see the output of your code
 
 ![](https://github.com/saurabhparulekar24/EDE5190_LAB2_SETUPGUIDE/blob/main/mobaoutput.png)
+
+Thank you
 
 
 
