@@ -1,4 +1,4 @@
-# EDE5190_LAB2_SETUPGUIDE
+# EDE5190_LAB2_SETUPGUIDE_Saurabh_Parulekar
 Setup Guide for Running C codes on RP2040(QTpy Board)
 This guide will help you to setup the WSL on your windows machine, then further help you to install the SDK on QTpy board and create compile and run a code written in C language
 ```
