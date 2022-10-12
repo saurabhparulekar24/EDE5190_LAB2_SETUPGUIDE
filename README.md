@@ -67,7 +67,8 @@ Now we clone the SDK repositories into the above created directory, type the bel
 $ git clone -b master https://github.com/raspberrypi/pico-sdk.git 
 $ cd pico-sdk 
 $ git submodule update --init 
-$ cd .. $ git clone -b master https://github.com/raspberrypi/pico-examples.git
+$ cd .. 
+$ git clone -b master https://github.com/raspberrypi/pico-examples.git
 ```
 
 `Note:` NOTE: Failure to run the git submodule update --init command above will mean that the tinyusb module will not be included, and as a result USB functionality will not be compiled into the SDK. This means that USB serial, other USB functions, and example code will not work
