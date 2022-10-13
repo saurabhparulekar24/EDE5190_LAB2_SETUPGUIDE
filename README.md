@@ -97,7 +97,7 @@ $ cd pico/pico-examples
 $ mkdir build 
 $ cd build
 $ export PICO_SDK_PATH=~/pico/pico-sdk
-$ cmake
+$ cmake ..
 ```
 
 You will get the following output
